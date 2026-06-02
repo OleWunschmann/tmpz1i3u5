@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       templateUrl:
-        description: Template Repository URL (current is https://github.com/OleWunschmann/AL-Go@update-with-customALGoFiles-of-template)
+        description: Template Repository URL (current is https://github.com/OleWunschmann/tmpz1i3u5-template@main)
         required: false
         default: ''
       downloadLatest:
@@ -26,7 +26,7 @@ on:
         type: string
         required: true
       templateUrl:
-        description: Template Repository URL (current is https://github.com/OleWunschmann/AL-Go@update-with-customALGoFiles-of-template)
+        description: Template Repository URL (current is https://github.com/OleWunschmann/tmpz1i3u5-template@main)
         type: string
         required: false
         default: ''
