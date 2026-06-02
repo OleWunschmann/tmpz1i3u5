@@ -1,0 +1,8 @@
+{
+  "$schema": "https://raw.githubusercontent.com/OleWunschmann/AL-Go/update-with-customALGoFiles-of-template/Actions/.Modules/settings.schema.json",
+  "type": "PTE",
+  "templateUrl": "https://github.com/OleWunschmann/AL-Go@update-with-customALGoFiles-of-template",
+  "runs-on": "ubuntu-latest",
+  "shell": "pwsh",
+  "MicrosoftTelemetryConnectionString": ""
+}
