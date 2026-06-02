@@ -182,7 +182,7 @@ jobs:
           downloadLatest: true
 
   Build:
-    needs: [ Initialization ]
+    needs: [ Initialization, JustSomeJob ]
     if: (!failure()) && (!cancelled()) && fromJson(needs.Initialization.outputs.buildOrderJson)[0].projectsCount > 0
     strategy:
       matrix:
@@ -292,7 +292,7 @@ jobs:
         uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
 
   Deploy:
-    needs: [ Initialization, Build ]
+    needs: [ Initialization, Build, CustomJob-PreDeploy ]
     if: (!cancelled()) && (needs.Build.result == 'success' || needs.Build.result == 'skipped') && needs.Initialization.outputs.environmentCount > 0
     strategy: ${{ fromJson(needs.Initialization.outputs.environmentsMatrixJson) }}
     runs-on: ${{ fromJson(matrix.os) }}
@@ -402,7 +402,7 @@ jobs:
           artifacts: '.artifacts'
 
   PostProcess:
-    needs: [ Initialization, Build, Deploy, Deliver, DeployALDoc, CodeAnalysisUpload ]
+    needs: [ Initialization, Build, Deploy, Deliver, DeployALDoc, CodeAnalysisUpload, CustomJob-PostDeploy ]
     if: (!cancelled())
     runs-on: [ ubuntu-latest ]
     steps:
@@ -418,3 +418,28 @@ jobs:
           shell: pwsh
           telemetryScopeJson: ${{ needs.Initialization.outputs.telemetryScopeJson }}
           currentJobContext: ${{ toJson(job) }}
+
+  JustSomeJob:
+    needs: [ Initialization ]
+    runs-on: [ windows-latest ]
+    steps:
+      - name: JustSomeStep
+        run: |
+          Write-Host 'JustSomeJob was here!'
+
+  CustomJob-PreDeploy:
+    needs: [ Initialization, Build ]
+    runs-on: [ windows-latest ]
+    steps:
+      - name: PreDeploy
+        run: |
+          Write-Host 'CustomJob-PreDeploy was here!'
+
+  CustomJob-PostDeploy:
+    needs: [ Initialization, Build, Deploy ]
+    if: (!cancelled())
+    runs-on: [ windows-latest ]
+    steps:
+      - name: PostDeploy
+        run: |
+          Write-Host 'CustomJob-PostDeploy was here!'
