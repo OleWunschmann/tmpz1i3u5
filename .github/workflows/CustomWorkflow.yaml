@@ -1,0 +1,16 @@
+name: Custom Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  CustomJob:
+    runs-on: [ ubuntu-latest ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run Custom Script
+        run: |
+          Write-Host 'Custom Workflow was triggered!'
