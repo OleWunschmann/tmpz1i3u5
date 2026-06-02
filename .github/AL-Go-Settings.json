@@ -1,9 +1,21 @@
 {
-  "$schema": "https://raw.githubusercontent.com/OleWunschmann/AL-Go/update-with-customALGoFiles-of-template/Actions/.Modules/settings.schema.json",
   "type": "PTE",
-  "templateUrl": "https://github.com/OleWunschmann/tmpz1i3u5-template@main",
   "runs-on": "ubuntu-latest",
   "shell": "pwsh",
   "MicrosoftTelemetryConnectionString": "",
-  "templateSha": "83ddd8f4d2ac7d74d9331df77851a34b847ae783"
+  "$schema": "https://raw.githubusercontent.com/OleWunschmann/AL-Go/update-with-customALGoFiles-of-template/Actions/.Modules/settings.schema.json",
+  "customALGoFiles": {
+    "filesToInclude": [
+      {
+        "filter": "CustomTemplateFile.Optional.txt"
+      }
+    ],
+    "filesToExclude": [
+      {
+        "filter": "CustomTemplateFile.Default.txt"
+      }
+    ]
+  },
+  "templateSha": "83ddd8f4d2ac7d74d9331df77851a34b847ae783",
+  "templateUrl": "https://github.com/OleWunschmann/tmpz1i3u5-template@main"
 }
